@@ -6,7 +6,11 @@ public class EnemyScript : MonoBehaviour
 {
     public float bulletDamageVulnerability;
 
+    public bool soldierZombie;
+    public float keepDistance;
     bool attackCooldown = false;
+
+
     public float attackCooldownDuration;
     public float health;
 
@@ -30,6 +34,11 @@ public class EnemyScript : MonoBehaviour
         float YInfluence = direction.y / XYSum; 
 
         rb.velocity = new Vector2(XInfluence * movementSpeed, YInfluence * movementSpeed);
+
+        if (soldierZombie)
+        {
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
