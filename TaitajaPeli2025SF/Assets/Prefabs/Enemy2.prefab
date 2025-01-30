@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keepDistance: 5
+  bulletDamageVulnerability: 20
   movementSpeed: 2
+  health: 75
   firingPoint: {fileID: 0}
   player: {fileID: 0}

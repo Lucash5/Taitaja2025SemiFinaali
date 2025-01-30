@@ -13,7 +13,15 @@ public class ArmedZombieWeaponScript : MonoBehaviour
     public Transform firingPoint;
     public Transform player;
 
+    public WeaponRewardPromptScript rewardPrompt;
+
     Rigidbody2D rb;
+
+    bool gunCooldown;
+    public float fireRate;
+
+    public GameObject bullet;
+    public float bulletVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,9 +68,22 @@ public class ArmedZombieWeaponScript : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            rewardPrompt.ZombieKilled();
             Destroy(gameObject);
         }
     }
 
+    IEnumerator FireBullet()
+    {
+        gunCooldown = true;
+        GameObject instantiatedBullet = Instantiate(bullet);
+        instantiatedBullet.transform.position = firingPoint.position;
+        instantiatedBullet.transform.rotation = firingPoint.rotation;
+        instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletVelocity);
+        instantiatedBullet.name = "Bullet";
+
+        yield return new WaitForSeconds(fireRate);
+        gunCooldown = false;
+    }
 
 }

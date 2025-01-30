@@ -18,8 +18,13 @@ public class EnemySpawnScript : MonoBehaviour
     float easierEnemyOdds;
 
     public float round1Intensity;
-    public float round2Intensity;   
+    public float round2Intensity;
 
+    public float round1ZombieAmount;
+    public float round2ZombieAmount;
+
+    float spawnedZombies;
+    float maxZombiesAmount;
 
     bool spawnCooldown;
 
@@ -29,17 +34,18 @@ public class EnemySpawnScript : MonoBehaviour
     {
         easierEnemyOdds = enemy1Odds;
         spawnRate = round1Intensity;
+        maxZombiesAmount = round1ZombieAmount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!spawnCooldown)
+        if (!spawnCooldown && spawnedZombies > maxZombiesAmount)
         {
             StartCoroutine(spawningEnemy());
         }
 
-        if (intensityCooldown)
+        if (!intensityCooldown)
         {
             StartCoroutine(IntensifySpawnRate());
         }
@@ -47,6 +53,7 @@ public class EnemySpawnScript : MonoBehaviour
 
     IEnumerator spawningEnemy()
     {
+        spawnedZombies += 1;
         spawnCooldown = true;
         GameObject instantiatedEnemy;
         int randomNum = Random.Range(0, 100);
@@ -70,6 +77,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         easierEnemyOdds = round2enemy1Odds;
         spawnRate = round2Intensity;
+        maxZombiesAmount = round2ZombieAmount;
     }
 
     IEnumerator IntensifySpawnRate()

@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour
 
     bool attackCooldown = false;
 
+    public WeaponRewardPromptScript rewardPrompt;
 
     public float attackCooldownDuration;
     public float health;
@@ -61,6 +62,7 @@ public class EnemyScript : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            rewardPrompt.ZombieKilled();
             Destroy(gameObject);
         }
     }

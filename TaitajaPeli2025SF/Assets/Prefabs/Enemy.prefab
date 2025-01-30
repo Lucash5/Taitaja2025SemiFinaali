@@ -126,9 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464ea172f2b0d0a4ba4f546d080e54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamageVulnerability: 15
-  soldierZombie: 0
-  keepDistance: 0
+  bulletDamageVulnerability: 16
   attackCooldownDuration: 1.25
   health: 100
   attackDamage: 15
