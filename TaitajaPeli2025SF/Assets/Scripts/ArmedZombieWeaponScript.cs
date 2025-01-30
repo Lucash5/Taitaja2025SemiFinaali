@@ -10,7 +10,6 @@ public class ArmedZombieWeaponScript : MonoBehaviour
     public float movementSpeed;
     public float health;
 
-    public Transform firingPoint;
     public Transform player;
 
     public WeaponRewardPromptScript rewardPrompt;
@@ -82,9 +81,9 @@ public class ArmedZombieWeaponScript : MonoBehaviour
     {
         gunCooldown = true;
         GameObject instantiatedBullet = Instantiate(bullet);
-        instantiatedBullet.transform.position = firingPoint.position;
-        instantiatedBullet.transform.rotation = firingPoint.rotation;
-        instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletVelocity);
+        instantiatedBullet.transform.position = transform.position;
+        instantiatedBullet.transform.rotation = transform.rotation;
+        instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(instantiatedBullet.transform.right * bulletVelocity);
         instantiatedBullet.name = "Boolet";
 
         yield return new WaitForSeconds(fireRate);

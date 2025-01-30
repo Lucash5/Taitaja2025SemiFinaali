@@ -7,6 +7,8 @@ public class EnemySpawnScript : MonoBehaviour
     public Transform player;
     public GameObject[] enemies;
 
+    public GameObject boolet;
+
     public Transform corner1;
     public Transform corner2;
 
@@ -26,7 +28,9 @@ public class EnemySpawnScript : MonoBehaviour
     float spawnedZombies;
     float maxZombiesAmount;
 
-    bool spawnCooldown;
+    bool spawnCooldown = false;
+
+    public WeaponRewardPromptScript weaponReward;
 
     bool intensityCooldown;
     // Start is called before the first frame update
@@ -40,7 +44,7 @@ public class EnemySpawnScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawnCooldown && spawnedZombies > maxZombiesAmount)
+        if (!spawnCooldown && spawnedZombies < maxZombiesAmount)
         {
             StartCoroutine(spawningEnemy());
         }
@@ -60,14 +64,22 @@ public class EnemySpawnScript : MonoBehaviour
         if (randomNum > easierEnemyOdds)
         {
             instantiatedEnemy = Instantiate(enemies[0]);
+            EnemyScript script = instantiatedEnemy.GetComponent<EnemyScript>();
+            script.player = player;
+            script.rewardPrompt = weaponReward;
         }
         else
         {
             instantiatedEnemy = Instantiate(enemies[1]);
+            ArmedZombieWeaponScript script = instantiatedEnemy.GetComponent<ArmedZombieWeaponScript>();
+            script.player = player;
+            script.bullet = boolet;
+            script.rewardPrompt = weaponReward;
         }
-
+        instantiatedEnemy.name = "Enemy";
         instantiatedEnemy.transform.position = new Vector2(Random.Range(corner1.position.x, corner2.position.x), Random.Range(corner1.position.y, corner2.position.y));
-        instantiatedEnemy.GetComponent<EnemyScript>().player = player;
+      
+        
 
         yield return new WaitForSeconds(spawnRate);
         spawnCooldown = false;
