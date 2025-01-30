@@ -22,7 +22,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         Vector2 direction = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        transform.up = direction * -1;
+        transform.right = direction * -1;
     }
 
     public IEnumerator TemporarySpeedUp(float time, float multiplier)

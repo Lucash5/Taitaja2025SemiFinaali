@@ -6,8 +6,6 @@ public class EnemyScript : MonoBehaviour
 {
     public float bulletDamageVulnerability;
 
-    public bool soldierZombie;
-    public float keepDistance;
     bool attackCooldown = false;
 
 
@@ -29,16 +27,16 @@ public class EnemyScript : MonoBehaviour
     {
         Vector2 direction = player.position - transform.position;
 
+        
+        transform.right = direction;
+
         float XYSum = Mathf.Abs( direction.x) + Mathf.Abs(direction.y);
         float XInfluence = direction.x / XYSum; 
         float YInfluence = direction.y / XYSum; 
 
         rb.velocity = new Vector2(XInfluence * movementSpeed, YInfluence * movementSpeed);
 
-        if (soldierZombie)
-        {
 
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,7 +69,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.name == "Bullet")
         {
-        Debug.Log("TST");
+      
             takeDamage(bulletDamageVulnerability);
             Destroy(collision.gameObject);
         }

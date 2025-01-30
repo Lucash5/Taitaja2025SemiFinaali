@@ -30,7 +30,7 @@ public class PlayerWeaponScript : MonoBehaviour
         GameObject instantiatedBullet = Instantiate(bullet);
         instantiatedBullet.transform.position = firingPoint.position;
         instantiatedBullet.transform.rotation = firingPoint.rotation;   
-        instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.up * bulletVelocity);
+        instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletVelocity);
         instantiatedBullet.name = "Bullet";
 
         yield return new WaitForSeconds(fireRate);
