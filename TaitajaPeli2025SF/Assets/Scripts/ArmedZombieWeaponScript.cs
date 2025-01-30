@@ -50,6 +50,11 @@ public class ArmedZombieWeaponScript : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
+        if (!gunCooldown)
+        {
+            StartCoroutine(FireBullet());
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -80,7 +85,7 @@ public class ArmedZombieWeaponScript : MonoBehaviour
         instantiatedBullet.transform.position = firingPoint.position;
         instantiatedBullet.transform.rotation = firingPoint.rotation;
         instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletVelocity);
-        instantiatedBullet.name = "Bullet";
+        instantiatedBullet.name = "Boolet";
 
         yield return new WaitForSeconds(fireRate);
         gunCooldown = false;

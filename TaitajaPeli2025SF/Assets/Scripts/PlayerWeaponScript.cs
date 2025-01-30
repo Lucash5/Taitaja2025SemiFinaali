@@ -37,4 +37,19 @@ public class PlayerWeaponScript : MonoBehaviour
         gunCooldown = false;
     }
 
+    public void SwitchWeapons(string weapon)
+    {
+        if(weapon == "m249")
+        {
+            fireRate /= 3;
+            bulletVelocity /= 1.5f;
+        }
+
+        if (weapon == "shotgun")
+        {
+            fireRate *= 3;
+            bulletVelocity *= 1.3f;
+        }
+    }
+
 }

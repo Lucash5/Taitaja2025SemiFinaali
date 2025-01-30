@@ -84,7 +84,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         intensityCooldown  = true;
 
-        spawnRate += 0.05f;
+        spawnRate -= 0.05f;
         yield return new WaitForSeconds(1);
         intensityCooldown = false;
     }

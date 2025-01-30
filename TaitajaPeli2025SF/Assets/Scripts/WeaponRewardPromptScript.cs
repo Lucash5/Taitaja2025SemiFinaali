@@ -30,13 +30,17 @@ public class WeaponRewardPromptScript : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Alpha1) && chosen == false)
         {
+            chosen = true;  
             rewardPrompt.SetActive(false);
             playerSprite.sprite = weapons[0];
+            gameObject.GetComponent<PlayerWeaponScript>().SwitchWeapons("m249");
         }
         else if(Input.GetKey(KeyCode.Alpha2) && chosen == false)
         {
+            chosen = true;
             rewardPrompt.SetActive(false);
             playerSprite.sprite = weapons[1];
+            gameObject.GetComponent<PlayerWeaponScript>().SwitchWeapons("shotgun");
         }
     }
 

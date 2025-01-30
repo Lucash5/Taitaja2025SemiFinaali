@@ -855,6 +855,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &660861557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 660861558}
+  m_Layer: 0
+  m_Name: Firingpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &660861558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660861557}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.707107, w: 0.7071066}
+  m_LocalPosition: {x: 0.94000006, y: -0.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1390125183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &715239935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,6 +6104,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939087503}
   m_CullTransparentMesh: 1
+--- !u!4 &1390125183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8117182301596433956, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+  m_PrefabInstance: {fileID: 1003733150293946714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1402921660
 GameObject:
   m_ObjectHideFlags: 0
@@ -6269,6 +6305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   XP: 0
+  bulletDamageVulnerability: 10
 --- !u!114 &1402921668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6284,7 +6321,9 @@ MonoBehaviour:
   killCount: {fileID: 816137503}
   rewardPrompt: {fileID: 92775346}
   killedZombies: 0
-  weapons: []
+  weapons:
+  - {fileID: 21300000, guid: 32ccf9fa2bbaa7e4b97e8297813a2c11, type: 3}
+  - {fileID: 21300000, guid: d6f3ec10d2341f2429713754a5faf680, type: 3}
 --- !u!1 &1506064273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6338,12 +6377,12 @@ MonoBehaviour:
   corner1: {fileID: 1904661742}
   corner2: {fileID: 522447431}
   spawnRate: 1
-  enemy1Odds: 20
-  round2enemy1Odds: 40
-  round1Intensity: 0
-  round2Intensity: 0
-  round1ZombieAmount: 0
-  round2ZombieAmount: 0
+  enemy1Odds: 10
+  round2enemy1Odds: 25
+  round1Intensity: 2
+  round2Intensity: 1.65
+  round1ZombieAmount: 100
+  round2ZombieAmount: 200
 --- !u!1 &1608908237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,9 +6731,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 7436025123242700058, guid: 377c57d588d9d5749b7700dfa1e69ad6, type: 3}
+    - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1402921665}
+    - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      propertyPath: firingPoint
+      value: 
+      objectReference: {fileID: 660861558}
+    - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      propertyPath: rewardPrompt
+      value: 
+      objectReference: {fileID: 1402921668}
+    - target: {fileID: 4839110916902387188, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      propertyPath: bulletVelocity
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6258759507361798093, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
       propertyPath: m_Name
       value: Enemy2
@@ -6741,7 +6800,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8117182301596433956, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660861558}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba3fe7e78070b44b2f6b3e0db1b91b, type: 3}
 --- !u!1001 &9181287966731952324
