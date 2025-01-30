@@ -37,15 +37,14 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.name == "Player" && !attackCooldown)
         {
             attackCooldown = true;
-            StartCoroutine(inflictDamage(collision.gameObject));
-            
+            StartCoroutine(inflictDamage());
         }
     }
 
-    IEnumerator inflictDamage(GameObject player)
+    IEnumerator inflictDamage()
     {
 
-        player.GetComponent<PlayerStats>().TakeDamage(attackDamage);
+        player.gameObject.GetComponent<PlayerStats>().TakeDamage(attackDamage);
         yield return new WaitForSeconds(attackCooldownDuration);
         attackCooldown = false;
     }
@@ -63,6 +62,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.name == "Bullet")
         {
+        Debug.Log("TST");
             takeDamage(bulletDamageVulnerability);
             Destroy(collision.gameObject);
         }
