@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
-
+            
         }
     }
 }

@@ -17,11 +17,18 @@ public class EnemySpawnScript : MonoBehaviour
 
     float easierEnemyOdds;
 
+    public float round1Intensity;
+    public float round2Intensity;   
+
+
     bool spawnCooldown;
+
+    bool intensityCooldown;
     // Start is called before the first frame update
     void Start()
     {
         easierEnemyOdds = enemy1Odds;
+        spawnRate = round1Intensity;
     }
 
     // Update is called once per frame
@@ -30,6 +37,11 @@ public class EnemySpawnScript : MonoBehaviour
         if (!spawnCooldown)
         {
             StartCoroutine(spawningEnemy());
+        }
+
+        if (intensityCooldown)
+        {
+            StartCoroutine(IntensifySpawnRate());
         }
     }
 
@@ -57,5 +69,15 @@ public class EnemySpawnScript : MonoBehaviour
     public void switchDifficulty()
     {
         easierEnemyOdds = round2enemy1Odds;
+        spawnRate = round2Intensity;
+    }
+
+    IEnumerator IntensifySpawnRate()
+    {
+        intensityCooldown  = true;
+
+        spawnRate += 0.05f;
+        yield return new WaitForSeconds(1);
+        intensityCooldown = false;
     }
 }
