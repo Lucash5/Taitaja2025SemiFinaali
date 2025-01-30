@@ -33,6 +33,8 @@ public class PlayerWeaponScript : MonoBehaviour
         instantiatedBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletVelocity);
         instantiatedBullet.name = "Bullet";
 
+        StartCoroutine(DestroyBullet(instantiatedBullet) );
+
         yield return new WaitForSeconds(fireRate);
         gunCooldown = false;
     }
@@ -50,6 +52,12 @@ public class PlayerWeaponScript : MonoBehaviour
             fireRate *= 3;
             bulletVelocity *= 1.3f;
         }
+    }
+
+    IEnumerator DestroyBullet(GameObject boolet)
+    {
+        yield return new WaitForSeconds(8);
+        Destroy(boolet);
     }
 
 }
