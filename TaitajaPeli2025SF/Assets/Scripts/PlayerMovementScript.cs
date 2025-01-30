@@ -27,7 +27,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     public IEnumerator TemporarySpeedUp(float time, float multiplier)
     {
-        playerMovementSpeed *= playerMovementSpeed * multiplier;
+        playerMovementSpeed *= playerMovementSpeed + multiplier;
         yield return new WaitForSeconds(time);
         playerMovementSpeed = originalSpeed;
     }

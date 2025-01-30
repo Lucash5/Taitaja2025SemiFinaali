@@ -17,6 +17,7 @@ public class MainMenuScript : MonoBehaviour
 
     void LoadScene()
     {
+        Debug.Log("lol");
         SceneManager.LoadScene("SampleScene");
     }
 

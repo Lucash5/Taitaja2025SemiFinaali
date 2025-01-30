@@ -10,10 +10,12 @@ public class PlayerWeaponScript : MonoBehaviour
     public Transform firingPoint;
     public GameObject bullet;
 
+    AudioSource AS;
+    public AudioClip AC;
     // Start is called before the first frame update
     void Start()
     {
-
+        AS = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,10 +24,12 @@ public class PlayerWeaponScript : MonoBehaviour
         if (Input.GetMouseButton(0) && gunCooldown == false)
         {
             StartCoroutine(FireBullet());
+
         }
     }
    IEnumerator FireBullet()
     {
+        AS.PlayOneShot(AC);
         gunCooldown = true;
         GameObject instantiatedBullet = Instantiate(bullet);
         instantiatedBullet.transform.position = firingPoint.position;
@@ -49,8 +53,8 @@ public class PlayerWeaponScript : MonoBehaviour
 
         if (weapon == "shotgun")
         {
-            fireRate *= 3;
-            bulletVelocity *= 1.3f;
+            fireRate /= 4;
+            bulletVelocity *= 1.2f;
         }
     }
 

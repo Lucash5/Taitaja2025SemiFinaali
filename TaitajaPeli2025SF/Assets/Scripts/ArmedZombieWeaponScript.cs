@@ -21,6 +21,8 @@ public class ArmedZombieWeaponScript : MonoBehaviour
 
     public GameObject bullet;
     public float bulletVelocity;
+
+    public GameObject droppableObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +75,8 @@ public class ArmedZombieWeaponScript : MonoBehaviour
         if (health <= 0)
         {
             rewardPrompt.ZombieKilled();
+            GameObject item = Instantiate(droppableObject);
+            item.transform.position = transform.position;
             Destroy(gameObject);
         }
     }

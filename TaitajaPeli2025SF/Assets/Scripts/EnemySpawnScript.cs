@@ -12,6 +12,9 @@ public class EnemySpawnScript : MonoBehaviour
     public Transform corner1;
     public Transform corner2;
 
+    public Transform corner3;
+    public Transform corner4;
+
     public float spawnRate;
 
     public float enemy1Odds;
@@ -33,6 +36,8 @@ public class EnemySpawnScript : MonoBehaviour
     public WeaponRewardPromptScript weaponReward;
 
     bool intensityCooldown;
+
+    public bool round2 = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,8 +82,16 @@ public class EnemySpawnScript : MonoBehaviour
             script.rewardPrompt = weaponReward;
         }
         instantiatedEnemy.name = "Enemy";
+        if (!round2)
+        {
+
         instantiatedEnemy.transform.position = new Vector2(Random.Range(corner1.position.x, corner2.position.x), Random.Range(corner1.position.y, corner2.position.y));
-      
+        }
+        else if(round2)
+        {
+            instantiatedEnemy.transform.position = new Vector2(Random.Range(corner3.position.x, corner4.position.x), Random.Range(corner3.position.y, corner4.position.y));
+        }
+
         
 
         yield return new WaitForSeconds(spawnRate);
@@ -87,9 +100,11 @@ public class EnemySpawnScript : MonoBehaviour
 
     public void switchDifficulty()
     {
+        round2 = true;
         easierEnemyOdds = round2enemy1Odds;
         spawnRate = round2Intensity;
         maxZombiesAmount = round2ZombieAmount;
+        spawnedZombies = 0;
     }
 
     IEnumerator IntensifySpawnRate()

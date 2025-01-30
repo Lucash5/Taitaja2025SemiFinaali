@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class WeaponRewardPromptScript : MonoBehaviour
 {
+    public GameObject wall;
+    public TMP_Text notification;
+
     public TMP_Text killCount;
     public GameObject rewardPrompt;
     public int killedZombies = 0;
@@ -24,7 +27,7 @@ public class WeaponRewardPromptScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (killedZombies >= 100 && rewardPrompt.active == false && chosen == false)
+        if (killedZombies >= 100 && rewardPrompt.activeSelf == false && chosen == false)
         {
             rewardPrompt.SetActive(true);
         }
@@ -34,6 +37,8 @@ public class WeaponRewardPromptScript : MonoBehaviour
             rewardPrompt.SetActive(false);
             playerSprite.sprite = weapons[0];
             gameObject.GetComponent<PlayerWeaponScript>().SwitchWeapons("m249");
+            wall.SetActive(false);
+            StartCoroutine(ShowNotification());
         }
         else if(Input.GetKey(KeyCode.Alpha2) && chosen == false)
         {
@@ -41,6 +46,8 @@ public class WeaponRewardPromptScript : MonoBehaviour
             rewardPrompt.SetActive(false);
             playerSprite.sprite = weapons[1];
             gameObject.GetComponent<PlayerWeaponScript>().SwitchWeapons("shotgun");
+            wall.SetActive(false);
+            StartCoroutine(ShowNotification());
         }
     }
 
@@ -53,5 +60,12 @@ public class WeaponRewardPromptScript : MonoBehaviour
     public void ResetCount()
     {
 
+    }
+
+    IEnumerator ShowNotification()
+    {
+        notification.enabled = true;
+        yield return new WaitForSeconds(8);
+        notification.enabled = false;
     }
 }

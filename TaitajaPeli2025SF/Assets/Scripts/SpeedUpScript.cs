@@ -11,6 +11,7 @@ public class SpeedUpScript : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             StartCoroutine(collision.gameObject.GetComponent<PlayerMovementScript>().TemporarySpeedUp(speedUpTime, speedUpMultiplier));
+            collision.gameObject.GetComponent<PlayerStats>().Heal(55);
             Destroy(gameObject);
         }
     }

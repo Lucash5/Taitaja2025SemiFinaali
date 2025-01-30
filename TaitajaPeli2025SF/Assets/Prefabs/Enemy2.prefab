@@ -170,3 +170,4 @@ MonoBehaviour:
   fireRate: 1
   bullet: {fileID: 0}
   bulletVelocity: 100
+  droppableObject: {fileID: 8381525719072484248, guid: d65b1b7258c89234791e36bda088582b, type: 3}

@@ -22,6 +22,11 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    public void Heal(float hp)
+    {
+        Health += hp;
+    }
+
     public void TakeDamage(float damage)
     {
         Health -= damage;
@@ -29,7 +34,7 @@ public class PlayerStats : MonoBehaviour
         if (Health <= 0)
         {
 
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
